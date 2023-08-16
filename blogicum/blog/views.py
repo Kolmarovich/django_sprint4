@@ -53,8 +53,7 @@ class PostDetailView(DetailView):
         queryset = queryset or self.get_queryset()
         if user.is_authenticated:
             post = queryset.filter(
-                Q(id=post_id) &
-                (Q(author=user) | Q(is_published=True))
+                Q(id=post_id) & (Q(author=user) | Q(is_published=True))
             ).select_related('author').first()
         else:
             post = queryset.filter(
