@@ -36,7 +36,7 @@ class Location(PublishedModel):
         verbose_name_plural = 'Местоположения'
 
     def __str__(self) -> str:
-        return self.name[:30]
+        return self.name[:TRUNCATE_LENGTH]
 
 
 class Post(PublishedModel):
@@ -90,8 +90,8 @@ class Category(PublishedModel):
     slug = models.SlugField(
         unique=True,
         verbose_name='Идентификатор',
-        help_text='Идентификатор страницы для URL; разрешены символы'
-                  ' латиницы, цифры, дефис и подчёркивание.'
+        help_text=('Идентификатор страницы для URL; разрешены символы'
+                   ' латиницы, цифры, дефис и подчёркивание.')
     )
 
     class Meta:
@@ -99,7 +99,7 @@ class Category(PublishedModel):
         verbose_name_plural = 'Категории'
 
     def __str__(self) -> str:
-        return self.title[:30]
+        return self.title[:TRUNCATE_LENGTH]
 
 
 class Comment(models.Model):
